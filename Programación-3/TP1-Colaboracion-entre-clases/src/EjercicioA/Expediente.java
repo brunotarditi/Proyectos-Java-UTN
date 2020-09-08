@@ -25,7 +25,7 @@ public class Expediente {
     }
 
     //constructor sobrecargado
-    public Expediente(int id, String letra, int numero, String descripcion, String ambito, String tipo, Expediente expedientePadre, List<Expediente> expedientesHijos, List<Control> controles) {
+    public Expediente(int id, String letra, int numero, String descripcion, String ambito, String tipo, Expediente expedientePadre) {
         this.id = id;
         this.letra = letra;
         this.numero = numero;
@@ -33,8 +33,6 @@ public class Expediente {
         this.ambito = ambito;
         this.tipo = tipo;
         this.expedientePadre = expedientePadre;
-        this.expedientesHijos = expedientesHijos;
-        this.controles = controles;
     }
 
     //get y set
@@ -127,7 +125,7 @@ public class Expediente {
         if (this.getControles() != null) {
             for (Control control : this.controles) {
                 if (control.isEsObligatorio()) {
-                    cadenaControl += ", " + control.getDenominacion();
+                    cadenaControl += control.getDenominacion() + ", ";
                 }
             }
         }
@@ -138,12 +136,14 @@ public class Expediente {
     /*A.3- Codifique en la clase Expediente un método denominado “public boolean getEstadoControles()” 
     que retorne true en caso de que todos los estados de los controles obligatorios se encuentren aprobados, 
     caso contrario retorne false.*/
-    public boolean gesEstadoControles() {
+    public boolean getEstadoControles() {
 
         if (this.getControles() != null) {
             for (Control control : this.controles) {
-                if (!control.getEstadoControl().isAprobado()) {
-                    return false;
+                if (control.isEsObligatorio()) {
+                    if (!control.getEstadoControl().isAprobado()) {
+                        return false;
+                    }
                 }
             }
         }
@@ -169,7 +169,6 @@ public class Expediente {
                 listaExpedientesRecursiva(expHijos, lista);
             }
         }
-
     }
 
 }

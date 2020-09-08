@@ -18,12 +18,11 @@ public class Control {
     public Control() {
     }
 
-    public Control(int id, String denominacion, boolean esObligatorio, EstadoControl estadoControl, List<Expediente> expedientes) {
+    public Control(int id, String denominacion, boolean esObligatorio, EstadoControl estadoControl) {
         this.id = id;
         this.denominacion = denominacion;
         this.esObligatorio = esObligatorio;
         this.estadoControl = estadoControl;
-        this.expedientes = expedientes;
     }
 
     public int getId() {

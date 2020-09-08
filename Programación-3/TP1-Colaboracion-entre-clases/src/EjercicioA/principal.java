@@ -8,6 +8,9 @@ package EjercicioA;
 public class principal {
     public static void main(String[] args) {
         
+        
+        //NUEVOS OBJETOS
+        
         Expediente ex1 = new Expediente();
         ex1.setId(1);
         ex1.setLetra("A");
@@ -15,6 +18,8 @@ public class principal {
         ex1.setDescripcion("N/A");
         ex1.setTipo("Clasificado");
         ex1.setAmbito("Militar");
+        
+        Expediente ex2 = new Expediente();
                 
         Control c1 = new Control();
         c1.setId(1);
@@ -37,6 +42,7 @@ public class principal {
         System.out.println(ex1.getControlesObligatorio());
         
         //A.3
+        
         
         //A.4
         

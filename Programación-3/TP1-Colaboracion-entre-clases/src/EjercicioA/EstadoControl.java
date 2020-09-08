@@ -11,15 +11,14 @@ public class EstadoControl {
 
     private long id;
     private boolean aprobado;
-    private List<Control> controles = new ArrayList<>();;
+    private List<Control> controles = new ArrayList<>();
 
     public EstadoControl() {
     }
 
-    public EstadoControl(long id, boolean aprobado, List<Control> controles) {
+    public EstadoControl(long id, boolean aprobado) {
         this.id = id;
         this.aprobado = aprobado;
-        this.controles = controles;
     }
 
     public long getId() {
