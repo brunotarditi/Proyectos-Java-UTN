@@ -8,7 +8,7 @@ import java.util.List;
  * @author Bruno Tarditi
  */
 public class Persona {
-    
+
     //atributos
     private String nombre;
     private String tipoDocumento;
@@ -17,10 +17,9 @@ public class Persona {
     private String email;
     private String celular;
     private Sector sector;
-    private List <Actividad> actividades = new ArrayList<>();
-            
-    //constructor vacío
+    private List<Actividad> actividades = new ArrayList<>();
 
+    //constructor vacío
     public Persona() {
     }
 
@@ -35,7 +34,7 @@ public class Persona {
         this.sector = sector;
         this.actividades = actividades;
     }
-    
+
     //get y set
     public String getNombre() {
         return nombre;
@@ -100,8 +99,57 @@ public class Persona {
     public void setActividades(List<Actividad> actividades) {
         this.actividades = actividades;
     }
+
+    //---------------C1)
+    /*C.1- Codifique en la clase Persona un método denominado “public doublé
+    totalPuntosAsignados()” que retorne el total de puntos asignados de las actividades
+    realizadas por una persona.*/
+    public double totalPuntosAsignados() {
+
+        double totalPuntos = 0.0;
+
+        if (getActividades() != null) {
+            for (Actividad actividad : this.actividades) {
+                totalPuntos += actividad.getTipoActividad().getPuntosAsignados();
+            }
+        }
+        return totalPuntos;
+    }
+
+    //---------------C2)
+    /*C.2- Codifique en la clase Persona un método denominado “public doublé
+    totalPuntosAsignados (int código)” que retorne el total de puntos asignados de un
+    único tipo de actividad realizada por una persona.*/
+    public double totalPuntosAsignados(int codigo) {
+
+        double totalPuntos = 0.0;
+        if (getActividades() != null) {
+            for (Actividad actividad : this.actividades) {
+                if (actividad.getTipoActividad().getCodigo() == codigo) {
+                    totalPuntos += actividad.getTipoActividad().getPuntosAsignados();
+                }
+            }
+        }
+        return totalPuntos;
+    }
+
+    //---------------C3)
+    /*C.3- Codifique en la clase Persona un método denominado “public doublé
+    totalPuntosAsignados (int código, int anio)” que retorne el total de puntos
+    asignados de un único tipo de actividad realizada por una persona para un periodo
+    asignado.*/
     
-    
-    
-    
+    public double totalPuntosAsignados(int codigo, int anio){
+        double totalPuntos =  0.0;
+        if (getActividades() != null) {
+            for (Actividad actividad : this.actividades) {
+                if (actividad.getTipoActividad().getCodigo() == codigo && actividad.getFechaInicio().getYear() + 1900 >= anio 
+                        && actividad.getFechaFin().getYear() + 1900 <= anio) {
+                    totalPuntos  += actividad.getTipoActividad().getPuntosAsignados();
+                }
+            }
+        }
+        return totalPuntos;
+    }
+      
 }

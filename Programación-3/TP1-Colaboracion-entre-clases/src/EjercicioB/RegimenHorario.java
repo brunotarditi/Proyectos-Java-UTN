@@ -9,6 +9,7 @@ public class RegimenHorario {
     //atributos
     private long id;
     private int horaIngreso;
+    private int minutoIngreso;
     private int horaEgreso;
     private int minutoEgreso;
     private Empleado empleado;
@@ -20,9 +21,10 @@ public class RegimenHorario {
     
     //constructor sobrecargado
 
-    public RegimenHorario(long id, int horaIngreso, int horaEgreso, int minutoEgreso, Empleado empleado) {
+    public RegimenHorario(long id, int horaIngreso, int horaEgreso,int minutoIngreso, int minutoEgreso, Empleado empleado) {
         this.id = id;
         this.horaIngreso = horaIngreso;
+        this.minutoIngreso = minutoEgreso;
         this.horaEgreso = horaEgreso;
         this.minutoEgreso = minutoEgreso;
         this.empleado = empleado;
@@ -45,6 +47,16 @@ public class RegimenHorario {
     public void setHoraIngreso(int horaIngreso) {
         this.horaIngreso = horaIngreso;
     }
+
+    public int getMinutoIngreso() {
+        return minutoIngreso;
+    }
+
+    public void setMinutoIngreso(int minutoIngreso) {
+        this.minutoIngreso = minutoIngreso;
+    }
+    
+    
 
     public int getHoraEgreso() {
         return horaEgreso;

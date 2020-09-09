@@ -77,5 +77,27 @@ public class Sector {
     public void setPersonas(List<Persona> personas) {
         this.personas = personas;
     }
+      
+    //---------------C4)
+    /*C.4- Codifique en la clase Sector un método RECURSIVO denominado “public
+    List<Sector> obtenerTotalSubsectores()” que retorne la totalidad de subsectores de
+    un sector.*/
+    public List<Sector> obtenerTotalSubsectores() {
+        List<Sector> listaRecursion = new ArrayList<Sector>();
+        listaSectoresRecursiva(this, listaRecursion);
+        return listaRecursion;
+
+    }
+
+    //metodo auxiliar
+    public void listaSectoresRecursiva(Sector sec, List<Sector> lista) {
+
+        lista.add(sec);
+        if (sec.getSectoresHijos()!= null) {
+            for (Sector secHijos : sec.getSectoresHijos()) {
+                listaSectoresRecursiva(secHijos, lista);
+            }
+        }
+    }
 
 }

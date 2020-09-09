@@ -9,18 +9,22 @@ import java.util.List;
  */
 public class EstadoControl {
 
+    //atributos
     private long id;
     private boolean aprobado;
     private List<Control> controles = new ArrayList<>();
 
+    //constructor vacío
     public EstadoControl() {
     }
 
+    //constructor sobrecargado
     public EstadoControl(long id, boolean aprobado) {
         this.id = id;
         this.aprobado = aprobado;
     }
 
+    //get y set
     public long getId() {
         return id;
     }

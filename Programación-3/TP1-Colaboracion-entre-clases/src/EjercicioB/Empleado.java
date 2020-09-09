@@ -88,4 +88,57 @@ public class Empleado {
         this.tardanzas = tardanzas;
     }
 
+    //---------------B2)
+    /*Codifique en la clase public List<Asistencia> getAsistenciaXMesXAnio(int mes,
+    int anio){} que retorne solo las asistencias del empleado correspondientes al mes y
+    año indicados*/
+    public List<Asistencia> getAsistenciaXMesXAnio(int mes, int anio) {
+
+        List<Asistencia> asistenciaMesAnio = new ArrayList<>();
+
+        if (getAsistencias() != null) {
+            for (Asistencia asistencia : this.asistencias) {
+                if (asistencia.getFecha().getMonth() == mes && asistencia.getFecha().getYear() + 1900 == anio) {
+                    asistenciaMesAnio.add(asistencia);
+                }
+            }
+
+        }
+        return asistenciaMesAnio;
+    }
+
+    //---------------B3)
+    /*Codifique en la clase public List<Tardanza> getDiasConTardanza(int mes, int
+    anio){} retorne los días con tardanza para hacerlo verifique el horario de la asistencia
+    contra el horario asignado en el régimen horario, si la asistencia supera en 15
+    minutos el horario establecido en el régimen instancia de Tardanza y copie la
+    información de la Asistencia a la Tardanza, almacene la tardanza en un Array del
+    mismo tipo, finalmente retorne el Array de tardanzas. Reutilice el método punto
+    anterior.*/
+    public List<Tardanza> getDiasConTardanza(int mes, int anio) {
+
+        List<Asistencia> asistenciaMesAnio = getAsistenciaXMesXAnio(mes, anio);
+        List<Tardanza> tardanzaMesAnio = new ArrayList<>();
+
+        if (getAsistencias() != null) {
+            for (Asistencia asistencia : this.asistencias) {
+                if (asistencia.getMinuto() > this.regimenHorario.getMinutoIngreso() + 15 && asistencia.getHora() >= this.regimenHorario.getHoraIngreso()) {
+
+                    Tardanza tardanza = new Tardanza();
+                    tardanza.setId(asistencia.getId());
+                    tardanza.setTipo(asistencia.getTipo());
+                    tardanza.setFecha(asistencia.getFecha());
+                    tardanza.setHora(asistencia.getHora());
+                    tardanza.setMinuto(asistencia.getMinuto());
+                    tardanzaMesAnio.add(tardanza);
+
+                }
+
+            }
+        }
+
+        return tardanzaMesAnio;
+
+    }
+
 }

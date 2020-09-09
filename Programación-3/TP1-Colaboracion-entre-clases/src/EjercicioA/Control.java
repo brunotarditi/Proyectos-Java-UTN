@@ -9,15 +9,18 @@ import java.util.List;
  */
 public class Control {
 
+    //atributos
     private int id;
     private String denominacion;
     private boolean esObligatorio;
     private EstadoControl estadoControl;
     private List<Expediente> expedientes = new ArrayList<>();
 
+    //constructor vacío
     public Control() {
     }
 
+    //constructor sobrecargado
     public Control(int id, String denominacion, boolean esObligatorio, EstadoControl estadoControl) {
         this.id = id;
         this.denominacion = denominacion;
@@ -25,6 +28,7 @@ public class Control {
         this.estadoControl = estadoControl;
     }
 
+    //get y set
     public int getId() {
         return id;
     }

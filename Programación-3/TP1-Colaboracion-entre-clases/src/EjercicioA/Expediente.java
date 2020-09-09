@@ -161,6 +161,7 @@ public class Expediente {
 
     }
 
+    //metodo auxiliar
     public void listaExpedientesRecursiva(Expediente exp, List<Expediente> lista) {
 
         lista.add(exp);

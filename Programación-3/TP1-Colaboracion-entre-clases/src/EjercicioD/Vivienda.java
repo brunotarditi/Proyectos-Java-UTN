@@ -20,6 +20,7 @@ public class Vivienda {
     //constructor vacío 
     public Vivienda() {
     }
+
     //constructor sobrecargado
     public Vivienda(long id, String calle, int numeroCalle, Double superficieTerreno, Barrio barrio) {
         this.id = id;
@@ -76,6 +77,29 @@ public class Vivienda {
 
     public void setHabitaciones(List<Habitacion> habitaciones) {
         this.habitaciones = habitaciones;
+    }
+
+    //---------------D2)
+    /*D.2- Codifique en la clase Vivienda un método denominado public double
+    getMetrosCuadradosCubiertos(){} que retorne el total de metros cuadrados de la
+    vivienda teniendo en cuenta la cantidad de habitaciones asociadas. Al finalizar el
+    cálculo valide que el valor obtenido no sea mayor que la superficie del terreno, si
+    ocurre esa situación emita una excepción con el mensaje “La superficie cubierta no
+    puede ser mayor a la superficie del terreno”*/
+    public double getMetrosCuadradosCubiertos() throws Exception {
+
+        double totalMetrosHabitaciones = 0.0;
+        if (getHabitaciones() != null) {
+            for (Habitacion habitacion : this.habitaciones) {
+                totalMetrosHabitaciones += habitacion.getMetrosCuadrados();
+            }
+        }
+        if (totalMetrosHabitaciones > this.superficieTerreno) {
+            throw new Exception("La superficie cubierta no puede ser mayor a la superficie del terreno");
+        }
+
+        return totalMetrosHabitaciones;
+
     }
 
 }
