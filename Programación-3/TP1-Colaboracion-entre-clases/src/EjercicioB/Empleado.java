@@ -131,12 +131,10 @@ public class Empleado {
                     tardanza.setHora(asistencia.getHora());
                     tardanza.setMinuto(asistencia.getMinuto());
                     tardanzaMesAnio.add(tardanza);
-
                 }
 
             }
         }
-
         return tardanzaMesAnio;
 
     }

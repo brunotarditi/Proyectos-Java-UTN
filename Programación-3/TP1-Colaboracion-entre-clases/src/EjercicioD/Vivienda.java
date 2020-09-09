@@ -13,7 +13,7 @@ public class Vivienda {
     private long id;
     private String calle;
     private int numeroCalle;
-    private Double superficieTerreno;
+    private double superficieTerreno;
     private Barrio barrio;
     private List<Habitacion> habitaciones = new ArrayList<>();
 
@@ -22,7 +22,7 @@ public class Vivienda {
     }
 
     //constructor sobrecargado
-    public Vivienda(long id, String calle, int numeroCalle, Double superficieTerreno, Barrio barrio) {
+    public Vivienda(long id, String calle, int numeroCalle, double superficieTerreno, Barrio barrio) {
         this.id = id;
         this.calle = calle;
         this.numeroCalle = numeroCalle;
@@ -55,11 +55,11 @@ public class Vivienda {
         this.numeroCalle = numeroCalle;
     }
 
-    public Double getSuperficieTerreno() {
+    public double getSuperficieTerreno() {
         return superficieTerreno;
     }
 
-    public void setSuperficieTerreno(Double superficieTerreno) {
+    public void setSuperficieTerreno(double superficieTerreno) {
         this.superficieTerreno = superficieTerreno;
     }
 

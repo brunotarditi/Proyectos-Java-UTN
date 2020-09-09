@@ -24,7 +24,7 @@ public class Persona {
     }
 
     //constructor sobrecargado
-    public Persona(String nombre, String tipoDocumento, long nroDocumento, int telefono, String email, String celular, Sector sector, List<Actividad> actividades) {
+    public Persona(String nombre, String tipoDocumento, long nroDocumento, int telefono, String email, String celular, Sector sector) {
         this.nombre = nombre;
         this.tipoDocumento = tipoDocumento;
         this.nroDocumento = nroDocumento;
@@ -32,7 +32,6 @@ public class Persona {
         this.email = email;
         this.celular = celular;
         this.sector = sector;
-        this.actividades = actividades;
     }
 
     //get y set
@@ -143,8 +142,8 @@ public class Persona {
         double totalPuntos =  0.0;
         if (getActividades() != null) {
             for (Actividad actividad : this.actividades) {
-                if (actividad.getTipoActividad().getCodigo() == codigo && actividad.getFechaInicio().getYear() + 1900 >= anio 
-                        && actividad.getFechaFin().getYear() + 1900 <= anio) {
+                if (actividad.getTipoActividad().getCodigo() == codigo && actividad.getFechaInicio().getYear() + 1900 <= anio 
+                        && actividad.getFechaFin().getYear() + 1900 >= anio) {
                     totalPuntos  += actividad.getTipoActividad().getPuntosAsignados();
                 }
             }

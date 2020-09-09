@@ -14,18 +14,20 @@ public class Actividad {
     private String nombre;
     private String descripcion;
     private TipoActividad tipoActividad;
+    private Persona persona;
 
     //constructor vacío
     public Actividad() {
     }
 
     //constructor sobrecargado
-    public Actividad(Date fechaInicio, Date fechaFin, String nombre, String descripcion, TipoActividad tipoActividad) {
+    public Actividad(Date fechaInicio, Date fechaFin, String nombre, String descripcion, TipoActividad tipoActividad, Persona persona) {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tipoActividad = tipoActividad;
+        this.persona = persona;
     }
 
     //get y set
@@ -69,4 +71,13 @@ public class Actividad {
         this.tipoActividad = tipoActividad;
     }
 
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+    
 }
