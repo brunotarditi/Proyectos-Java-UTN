@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 public class Turno extends EntityBean implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
-    private int idTurno;
+    //private int idTurno;
     private Date fecha;
     private int hora;
     private int minutos;
@@ -24,8 +24,7 @@ public class Turno extends EntityBean implements java.io.Serializable {
     public Turno() {
     }
 
-    public Turno(int idTurno, Date fecha, int hora, int minutos, Paciente paciente, Medico medico) {
-        this.idTurno = idTurno;
+    public Turno(Date fecha, int hora, int minutos, Paciente paciente, Medico medico) {
         this.fecha = fecha;
         this.hora = hora;
         this.minutos = minutos;
@@ -33,13 +32,13 @@ public class Turno extends EntityBean implements java.io.Serializable {
         this.medico = medico;
     }
 
-    public int getIdTurno() {
-        return idTurno;
-    }
-
-    public void setIdTurno(int idTurno) {
-        this.idTurno = idTurno;
-    }
+//    public int getIdTurno() {
+//        return idTurno;
+//    }
+//
+//    public void setIdTurno(int idTurno) {
+//        this.idTurno = idTurno;
+//    }
 
     public Date getFecha() {
         return fecha;

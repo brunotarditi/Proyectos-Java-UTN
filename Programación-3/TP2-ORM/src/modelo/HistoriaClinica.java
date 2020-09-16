@@ -5,8 +5,6 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -18,7 +16,7 @@ import javax.persistence.OneToOne;
 public class HistoriaClinica extends EntityBean implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
-    private int idHistoriaClinica;
+    //private int idHistoriaClinica;
     private int numero;
     private Date fechaAlta;
     private Paciente paciente;
@@ -27,20 +25,19 @@ public class HistoriaClinica extends EntityBean implements java.io.Serializable 
     public HistoriaClinica() {
     }
 
-    public HistoriaClinica(int idHistoriaClinica, int numero, Date fechaAlta, Paciente paciente) {
-        this.idHistoriaClinica = idHistoriaClinica;
+    public HistoriaClinica(int numero, Date fechaAlta, Paciente paciente) {
         this.numero = numero;
         this.fechaAlta = fechaAlta;
         this.paciente = paciente;
     }
 
-    public int getIdHistoriaClinica() {
-        return idHistoriaClinica;
-    }
+//    public int getIdHistoriaClinica() {
+//        return idHistoriaClinica;
+//    }
 
-    public void setIdHistoriaClinica(int idHistoriaClinica) {
-        this.idHistoriaClinica = idHistoriaClinica;
-    }
+//    public void setIdHistoriaClinica(int idHistoriaClinica) {
+//        this.idHistoriaClinica = idHistoriaClinica;
+//    }
 
     public int getNumero() {
         return numero;

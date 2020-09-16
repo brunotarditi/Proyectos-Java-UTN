@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 public class Paciente extends Persona implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
-    private int idPaciente;
+    //private int idPaciente;
     private int nroSocio;
     private HistoriaClinica historiaClinica;
     private List<Turno> turnos = new ArrayList<>();
@@ -22,20 +22,19 @@ public class Paciente extends Persona implements java.io.Serializable {
     public Paciente() {
     }
 
-    public Paciente(int idPaciente, int nroSocio, HistoriaClinica historiaClinica, int idPersona, String nombre, String apellido, long dni, Domicilio domicilio) {
-        super(idPersona, nombre, apellido, dni, domicilio);
-        this.idPaciente = idPaciente;
+    public Paciente(int nroSocio, HistoriaClinica historiaClinica, String nombre, String apellido, long dni, Domicilio domicilio) {
+        super(nombre, apellido, dni, domicilio);
         this.nroSocio = nroSocio;
         this.historiaClinica = historiaClinica;
     }
 
-    public int getIdPaciente() {
-        return idPaciente;
-    }
-
-    public void setIdPaciente(int idPaciente) {
-        this.idPaciente = idPaciente;
-    }
+//    public int getIdPaciente() {
+//        return idPaciente;
+//    }
+//
+//    public void setIdPaciente(int idPaciente) {
+//        this.idPaciente = idPaciente;
+//    }
 
     public int getNroSocio() {
         return nroSocio;
@@ -60,6 +59,18 @@ public class Paciente extends Persona implements java.io.Serializable {
 
     public void setTurnos(List<Turno> turnos) {
         this.turnos = turnos;
+    }
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idDomicilio")
+    @Override
+    public Domicilio getDomicilio() {
+        return this.domicilio;
+    }
+
+    @Override
+    public void setDomicilio(Domicilio domicilio) {
+        this.domicilio = domicilio;
     }
 
     public Long getId() {

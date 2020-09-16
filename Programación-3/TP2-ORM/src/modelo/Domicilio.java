@@ -1,9 +1,6 @@
 package modelo;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -13,7 +10,7 @@ import javax.persistence.OneToOne;
 public class Domicilio extends EntityBean implements java.io.Serializable{
 
     private static final long serialVersionUID = 1L;
-    private int idDomicilio;
+    //private int idDomicilio;
     private String localidad;
     private String calle;
     private int numero;
@@ -22,21 +19,20 @@ public class Domicilio extends EntityBean implements java.io.Serializable{
     public Domicilio() {
     }
 
-    public Domicilio(int idDomicilio, String localidad, String calle, int numero, Persona persona) {
-        this.idDomicilio = idDomicilio;
+    public Domicilio( String localidad, String calle, int numero, Persona persona) {
         this.localidad = localidad;
         this.calle = calle;
         this.numero = numero;
         this.persona = persona;
     }
 
-    public int getIdDomicilio() {
-        return idDomicilio;
-    }
-
-    public void setIdDomicilio(int idDomicilio) {
-        this.idDomicilio = idDomicilio;
-    }
+//    public int getIdDomicilio() {
+//        return idDomicilio;
+//    }
+//
+//    public void setIdDomicilio(int idDomicilio) {
+//        this.idDomicilio = idDomicilio;
+//    }
 
     public String getLocalidad() {
         return localidad;
@@ -62,13 +58,21 @@ public class Domicilio extends EntityBean implements java.io.Serializable{
         this.numero = numero;
     }
 
-    @OneToOne (mappedBy = "domicilio")
+    
     public Persona getPersona() {
         return persona;
     }
 
     public void setPersona(Persona persona) {
         this.persona = persona;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
     
     

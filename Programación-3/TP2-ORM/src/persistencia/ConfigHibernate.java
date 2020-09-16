@@ -21,7 +21,7 @@ public class ConfigHibernate {
         try {
 
             AnnotationConfiguration config = new AnnotationConfiguration();
-            config.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3307/ormpersona");
+            config.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3307/orm_tp");
             config.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
             config.setProperty("hibernate.connection.username", "root");
             config.setProperty("hibernate.connection.password", "1234");
@@ -37,14 +37,13 @@ public class ConfigHibernate {
             config.setProperty("hibernate.transaction.factory_class", "org.hibernate.transaction.JDBCTransactionFactory");
 
             config.addPackage("Entidades");
-            config.addAnnotatedClass(Persona.class);
-            config.addAnnotatedClass(Domicilio.class);
-            config.addAnnotatedClass(Medico.class);
-            config.addAnnotatedClass(Empleado.class);
-            config.addAnnotatedClass(Paciente.class);
-            config.addAnnotatedClass(HistoriaClinica.class);
             config.addAnnotatedClass(DetalleHistoriaClinica.class);
+            config.addAnnotatedClass(Domicilio.class);
+            config.addAnnotatedClass(Empleado.class);
             config.addAnnotatedClass(Especialidad.class);
+            config.addAnnotatedClass(HistoriaClinica.class);
+            config.addAnnotatedClass(Medico.class);
+            config.addAnnotatedClass(Paciente.class);
             config.addAnnotatedClass(Turno.class);
             
             sessionFactory = config.buildSessionFactory();

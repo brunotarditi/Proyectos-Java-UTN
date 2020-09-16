@@ -3,11 +3,11 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 public class Medico extends Persona implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
-    private int idMedico;
+    //private int idMedico;
     private int matricula;
     private long celular;
     private List<Especialidad> especialidades = new ArrayList<>();
@@ -25,20 +25,19 @@ public class Medico extends Persona implements java.io.Serializable {
     public Medico() {
     }
 
-    public Medico(int idMedico, int matricula, long celular, int idPersona, String nombre, String apellido, long dni, Domicilio domicilio) {
-        super(idPersona, nombre, apellido, dni, domicilio);
-        this.idMedico = idMedico;
+    public Medico( int matricula, long celular, String nombre, String apellido, long dni, Domicilio domicilio) {
+        super(nombre, apellido, dni, domicilio);
         this.matricula = matricula;
         this.celular = celular;
     }
 
-    public int getIdMedico() {
-        return idMedico;
-    }
-
-    public void setIdMedico(int idMedico) {
-        this.idMedico = idMedico;
-    }
+//    public int getIdMedico() {
+//        return idMedico;
+//    }
+//
+//    public void setIdMedico(int idMedico) {
+//        this.idMedico = idMedico;
+//    }
 
     public int getMatricula() {
         return matricula;
@@ -78,6 +77,18 @@ public class Medico extends Persona implements java.io.Serializable {
 
     public void setTurnos(List<Turno> turnos) {
         this.turnos = turnos;
+    }
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idDomicilio")
+    @Override
+    public Domicilio getDomicilio() {
+        return this.domicilio;
+    }
+
+    @Override
+    public void setDomicilio(Domicilio domicilio) {
+        this.domicilio = domicilio;
     }
 
     public Long getId() {
