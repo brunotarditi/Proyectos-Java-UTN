@@ -59,44 +59,43 @@ public class Principal {
             //Especialidad
             e1.setDenominacion("Clínico");
             e2.setDenominacion("Gastroenterólogo");
-            especialidades.add(e1);
-            especialidades.add(e2);
 
             //Paciente
             pa1.setNombre("Walter");
             pa1.setApellido("Gomez");
             pa1.setDomicilio(dom1);
             pa1.setNroSocio(0366);
-            
 
             //Turnos
             t1.setFecha(d1);
-            t1.setMedico(m1);
             turnos.add(t1);
-            t1.setPaciente(pa1);
 
             //Medico
             m1.setTurnos(turnos);
             m1.setDomicilio(dom1);
-            m1.setEspecialidades(especialidades);
             medicos.add(m1);
-            
+            especialidades.add(e1);
+            especialidades.add(e2);
+
+            pa1.setTurnos(turnos);
+            pa1.setHistoriaClinica(hc1);
             hc1.setPaciente(pa1);
             hc1.setDetalles(detalles);
-            pa1.setHistoriaClinica(hc1);
-            pa1.setTurnos(turnos);
+
             e1.setMedicos(medicos);
             e2.setMedicos(medicos);
-            
+            t1.setPaciente(pa1);
+            t1.setMedico(m1);
+            m1.setEspecialidades(especialidades);
             emp1.setNombre("Bruno");
             emp1.setApellido("Tarditi");
             emp1.setSueldo(45000);
-            
+
             gestor.guardar(m1);
             gestor.guardar(emp1);
             gestor.guardar(e1);
-            gestor.guardar(e2);    
-        
+            gestor.guardar(e2);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

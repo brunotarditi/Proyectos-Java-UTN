@@ -46,9 +46,9 @@ public class Especialidad extends EntityBean implements java.io.Serializable {
     }
 
     @ManyToMany(
-    cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-    mappedBy = "especialidades",
-    targetEntity = Medico.class
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            mappedBy = "especialidades",
+            targetEntity = Medico.class
     )
     public List<Medico> getMedicos() {
         return medicos;

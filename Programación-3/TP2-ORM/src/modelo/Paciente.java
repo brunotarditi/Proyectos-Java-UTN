@@ -44,8 +44,8 @@ public class Paciente extends Persona implements java.io.Serializable {
     public void setNroSocio(int nroSocio) {
         this.nroSocio = nroSocio;
     }
-    @OneToOne(cascade={CascadeType.ALL})
-    @JoinColumn(name = "idHistoria")
+    @OneToOne(cascade = {CascadeType.ALL}) 
+    @JoinColumn(name = "idHistoriaClinica")
     public HistoriaClinica getHistoriaClinica() {
         return historiaClinica;
     }

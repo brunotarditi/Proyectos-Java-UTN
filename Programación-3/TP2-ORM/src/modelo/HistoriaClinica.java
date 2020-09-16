@@ -58,7 +58,7 @@ public class HistoriaClinica extends EntityBean implements java.io.Serializable 
         this.fechaAlta = fechaAlta;
     }
 
-    
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "historiaClinica")
     public Paciente getPaciente() {
         return paciente;
     }
@@ -67,7 +67,7 @@ public class HistoriaClinica extends EntityBean implements java.io.Serializable 
         this.paciente = paciente;
     }
 
-    @OneToMany(mappedBy = "historiaClinica", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "historiaClinica")
     public List<DetalleHistoriaClinica> getDetalles() {
         return detalles;
     }

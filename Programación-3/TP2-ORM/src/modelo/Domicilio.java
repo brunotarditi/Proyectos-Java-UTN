@@ -62,7 +62,7 @@ public class Domicilio extends EntityBean implements java.io.Serializable{
         this.numero = numero;
     }
 
-    
+    @OneToOne (mappedBy = "domicilio")
     public Persona getPersona() {
         return persona;
     }

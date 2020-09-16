@@ -56,13 +56,12 @@ public class Medico extends Persona implements java.io.Serializable {
         this.celular = celular;
     }
 
-    @ManyToMany(fetch=FetchType.LAZY,
-    targetEntity=Especialidad.class,
-    cascade=CascadeType.ALL)
+    @ManyToMany(targetEntity = Especialidad.class,
+            cascade = CascadeType.ALL)
     @JoinTable(
-    name="ESPECIALIDAD",
-    joinColumns=@JoinColumn(name="MEDICO_ID"),
-    inverseJoinColumns=@JoinColumn(name="ESPECIALIDAD_ID")
+            name = "MEDICO_ESPECIALIDAD",
+            joinColumns = @JoinColumn(name = "ESPECIALIDAD_ID"),
+            inverseJoinColumns = @JoinColumn(name = "MEDICO_ID")
     )
     public List<Especialidad> getEspecialidades() {
         return especialidades;
@@ -77,7 +76,6 @@ public class Medico extends Persona implements java.io.Serializable {
         return turnos;
     }
 
-    
     public void setTurnos(List<Turno> turnos) {
         this.turnos = turnos;
     }
