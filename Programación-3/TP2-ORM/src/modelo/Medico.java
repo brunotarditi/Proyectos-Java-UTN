@@ -16,7 +16,6 @@ import javax.persistence.OneToOne;
 public class Medico extends Persona implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
-    //private int idMedico;
     private int matricula;
     private long celular;
     private List<Especialidad> especialidades = new ArrayList<>();
@@ -24,20 +23,6 @@ public class Medico extends Persona implements java.io.Serializable {
 
     public Medico() {
     }
-
-    public Medico( int matricula, long celular, String nombre, String apellido, long dni, Domicilio domicilio) {
-        super(nombre, apellido, dni, domicilio);
-        this.matricula = matricula;
-        this.celular = celular;
-    }
-
-//    public int getIdMedico() {
-//        return idMedico;
-//    }
-//
-//    public void setIdMedico(int idMedico) {
-//        this.idMedico = idMedico;
-//    }
 
     public int getMatricula() {
         return matricula;
@@ -55,8 +40,7 @@ public class Medico extends Persona implements java.io.Serializable {
         this.celular = celular;
     }
 
-    @ManyToMany(targetEntity = Especialidad.class,
-            cascade = CascadeType.ALL)
+    @ManyToMany(targetEntity = Especialidad.class, cascade = CascadeType.ALL)
     @JoinTable(
             name = "MEDICO_ESPECIALIDAD",
             joinColumns = @JoinColumn(name = "ESPECIALIDAD_ID"),
@@ -70,6 +54,11 @@ public class Medico extends Persona implements java.io.Serializable {
         this.especialidades = especialidades;
     }
 
+    public void addEspecialidades(Especialidad especialidad) {
+        this.especialidades.add(especialidad);
+        especialidad.addMedicos(this);
+    }
+
     @OneToMany(mappedBy = "medico", cascade = CascadeType.ALL)
     public List<Turno> getTurnos() {
         return turnos;
@@ -78,7 +67,11 @@ public class Medico extends Persona implements java.io.Serializable {
     public void setTurnos(List<Turno> turnos) {
         this.turnos = turnos;
     }
-    
+
+    public void addTurnos(Turno turno) {
+        this.turnos.add(turno);
+    }
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idDomicilio")
     @Override
@@ -89,14 +82,6 @@ public class Medico extends Persona implements java.io.Serializable {
     @Override
     public void setDomicilio(Domicilio domicilio) {
         this.domicilio = domicilio;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
 }

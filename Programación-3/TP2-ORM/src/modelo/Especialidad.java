@@ -14,24 +14,11 @@ import javax.persistence.ManyToMany;
 public class Especialidad extends EntityBean implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
-    //private int idEspecialidad;
     private String denominacion;
     private List<Medico> medicos = new ArrayList<>();
 
     public Especialidad() {
     }
-
-    public Especialidad(String denominacion) {
-        this.denominacion = denominacion;
-    }
-
-//    public int getIdEspecialidad() {
-//        return idEspecialidad;
-//    }
-//
-//    public void setIdEspecialidad(int idEspecialidad) {
-//        this.idEspecialidad = idEspecialidad;
-//    }
 
     public String getDenominacion() {
         return denominacion;
@@ -54,12 +41,7 @@ public class Especialidad extends EntityBean implements java.io.Serializable {
         this.medicos = medicos;
     }
 
-    public Long getId() {
-        return id;
+       public void addMedicos(Medico medico) {
+        this.medicos.add(medico);
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 }

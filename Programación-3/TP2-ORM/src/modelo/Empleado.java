@@ -31,7 +31,6 @@ public class Empleado extends Persona implements java.io.Serializable {
 //    public void setIdEmpleado(int idEmpleado) {
 //        this.idEmpleado = idEmpleado;
 //    }
-
     public int getNroLegajo() {
         return nroLegajo;
     }
@@ -47,7 +46,7 @@ public class Empleado extends Persona implements java.io.Serializable {
     public void setSueldo(double sueldo) {
         this.sueldo = sueldo;
     }
-    
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idDomicilio")
     @Override
@@ -58,14 +57,6 @@ public class Empleado extends Persona implements java.io.Serializable {
     @Override
     public void setDomicilio(Domicilio domicilio) {
         this.domicilio = domicilio;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
 }

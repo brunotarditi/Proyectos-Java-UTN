@@ -26,6 +26,7 @@ public class Gestor {
 
     public Gestor() {
         configHibernate = new ConfigHibernate();
+        sesion = ConfigHibernate.openSession();
     }
 
     public void guardar(Object o) throws Exception {

@@ -2,7 +2,6 @@ package modelo;
 
 import java.util.Date;
 import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -13,7 +12,6 @@ import javax.persistence.ManyToOne;
 public class DetalleHistoriaClinica extends EntityBean implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
-    //private int idDetalleHC;
     private Date fechaAtencion;
     private String sintomas;
     private String diagnostico;
@@ -22,22 +20,6 @@ public class DetalleHistoriaClinica extends EntityBean implements java.io.Serial
 
     public DetalleHistoriaClinica() {
     }
-
-    public DetalleHistoriaClinica(Date fechaAtencion, String sintomas, String diagnostico, String observaciones, HistoriaClinica historiaClinica) {
-        this.fechaAtencion = fechaAtencion;
-        this.sintomas = sintomas;
-        this.diagnostico = diagnostico;
-        this.observaciones = observaciones;
-        this.historiaClinica = historiaClinica;
-    }
-
-//    public int getIdDetalleHC() {
-//        return idDetalleHC;
-//    }
-
-//    public void setIdDetalleHC(int idDetalleHC) {
-//        this.idDetalleHC = idDetalleHC;
-//    }
 
     public Date getFechaAtencion() {
         return fechaAtencion;
@@ -71,7 +53,7 @@ public class DetalleHistoriaClinica extends EntityBean implements java.io.Serial
         this.observaciones = observaciones;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idHistoriaClinica")
     public HistoriaClinica getHistoriaClinica() {
         return historiaClinica;
@@ -79,14 +61,7 @@ public class DetalleHistoriaClinica extends EntityBean implements java.io.Serial
 
     public void setHistoriaClinica(HistoriaClinica historiaClinica) {
         this.historiaClinica = historiaClinica;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        historiaClinica.addDetallesHistoriaClinica(this);
     }
 
 }

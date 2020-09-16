@@ -1,6 +1,6 @@
 package orm;
 
-import controlador.GestorFactura;
+import controlador.Gestor;
 import java.util.Date;
 import modelo.*;
 
@@ -18,27 +18,31 @@ public class Principal {
             Date d1 = new Date(2019, 5, 17);
             Date d2 = new Date(2020, 2, 2);
             Date d3 = new Date(2020, 9, 20);
-            GestorFactura gestor = new GestorFactura();
+            Gestor gestor = new Gestor();
             Domicilio dom1 = new Domicilio();
             Domicilio dom2 = new Domicilio();
-            Especialidad e1 = new Especialidad("Cardiólogo");
-            Especialidad e2 = new Especialidad("Clínico");
+            Especialidad e1 = new Especialidad();
+            //Especialidad e2 = new Especialidad();
             Empleado emp1 = new Empleado();
             Medico m1 = new Medico();
-            Medico m2 = new Medico();
+            //Medico m2 = new Medico();
             Paciente pa1 = new Paciente();
             Turno t1 = new Turno();
-            Turno t2 = new Turno();
+            //Turno t2 = new Turno();
             HistoriaClinica hc1 = new HistoriaClinica();
             DetalleHistoriaClinica dhc1 = new DetalleHistoriaClinica();
-            DetalleHistoriaClinica dhc2 = new DetalleHistoriaClinica();
+            //DetalleHistoriaClinica dhc2 = new DetalleHistoriaClinica();
 
             //Colaboracion entre clases
+            e1.setDenominacion("Cardiólogo");
+            e1.setDenominacion("Traumatólogo");
+            
             m1.setNombre("Daniel");
             m1.setApellido("López Rosetti");
             m1.setDni(16258369);
             m1.setMatricula(1236);
-            m1.getEspecialidades().add(e1);
+            m1.addEspecialidades(e1);
+            m1.getTurnos().add(t1);
 
             dom1.setCalle("Paso de los Andes");
             dom1.setLocalidad("Godoy Cruz");
@@ -61,9 +65,11 @@ public class Principal {
             pa1.setDni(21658963);
             pa1.setNroSocio(3658);
 
+            
             hc1.setFechaAlta(d1);
             hc1.setPaciente(pa1);
             hc1.setNumero(654);
+            
 
             dhc1.setDiagnostico("cáncer");
             dhc1.setSintomas("tos");

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -34,11 +35,9 @@ public class HistoriaClinica extends EntityBean implements java.io.Serializable 
 //    public int getIdHistoriaClinica() {
 //        return idHistoriaClinica;
 //    }
-
 //    public void setIdHistoriaClinica(int idHistoriaClinica) {
 //        this.idHistoriaClinica = idHistoriaClinica;
 //    }
-
     public int getNumero() {
         return numero;
     }
@@ -64,7 +63,7 @@ public class HistoriaClinica extends EntityBean implements java.io.Serializable 
         this.paciente = paciente;
     }
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "historiaClinica")
+    @OneToMany(mappedBy = "historiaClinica", cascade = CascadeType.ALL)
     public List<DetalleHistoriaClinica> getDetalles() {
         return detalles;
     }
@@ -73,12 +72,8 @@ public class HistoriaClinica extends EntityBean implements java.io.Serializable 
         this.detalles = detalles;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void addDetallesHistoriaClinica(DetalleHistoriaClinica detalle) {
+        this.detalles.add(detalle);
     }
 
 }

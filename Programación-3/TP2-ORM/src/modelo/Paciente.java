@@ -14,27 +14,12 @@ import javax.persistence.OneToOne;
 public class Paciente extends Persona implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
-    //private int idPaciente;
     private int nroSocio;
     private HistoriaClinica historiaClinica;
     private List<Turno> turnos = new ArrayList<>();
 
     public Paciente() {
     }
-
-    public Paciente(int nroSocio, HistoriaClinica historiaClinica, String nombre, String apellido, long dni, Domicilio domicilio) {
-        super(nombre, apellido, dni, domicilio);
-        this.nroSocio = nroSocio;
-        this.historiaClinica = historiaClinica;
-    }
-
-//    public int getIdPaciente() {
-//        return idPaciente;
-//    }
-//
-//    public void setIdPaciente(int idPaciente) {
-//        this.idPaciente = idPaciente;
-//    }
 
     public int getNroSocio() {
         return nroSocio;
@@ -43,7 +28,8 @@ public class Paciente extends Persona implements java.io.Serializable {
     public void setNroSocio(int nroSocio) {
         this.nroSocio = nroSocio;
     }
-    @OneToOne(cascade = {CascadeType.ALL}) 
+
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idHistoriaClinica")
     public HistoriaClinica getHistoriaClinica() {
         return historiaClinica;
@@ -52,6 +38,7 @@ public class Paciente extends Persona implements java.io.Serializable {
     public void setHistoriaClinica(HistoriaClinica historiaClinica) {
         this.historiaClinica = historiaClinica;
     }
+
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
     public List<Turno> getTurnos() {
         return turnos;
@@ -61,6 +48,10 @@ public class Paciente extends Persona implements java.io.Serializable {
         this.turnos = turnos;
     }
     
+    public void addTurnos(Turno turno) {
+        this.turnos.add(turno);
+    }
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idDomicilio")
     @Override
@@ -71,14 +62,6 @@ public class Paciente extends Persona implements java.io.Serializable {
     @Override
     public void setDomicilio(Domicilio domicilio) {
         this.domicilio = domicilio;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
 }

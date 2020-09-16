@@ -7,32 +7,15 @@ import javax.persistence.Entity;
  * @author Bruno Tarditi
  */
 @Entity
-public class Domicilio extends EntityBean implements java.io.Serializable{
+public class Domicilio extends EntityBean implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
-    //private int idDomicilio;
     private String localidad;
     private String calle;
     private int numero;
-    private Persona persona;
 
     public Domicilio() {
     }
-
-    public Domicilio( String localidad, String calle, int numero, Persona persona) {
-        this.localidad = localidad;
-        this.calle = calle;
-        this.numero = numero;
-        this.persona = persona;
-    }
-
-//    public int getIdDomicilio() {
-//        return idDomicilio;
-//    }
-//
-//    public void setIdDomicilio(int idDomicilio) {
-//        this.idDomicilio = idDomicilio;
-//    }
 
     public String getLocalidad() {
         return localidad;
@@ -58,23 +41,8 @@ public class Domicilio extends EntityBean implements java.io.Serializable{
         this.numero = numero;
     }
 
-    
-    public Persona getPersona() {
-        return persona;
-    }
-
     public void setPersona(Persona persona) {
-        this.persona = persona;
+        persona.setDomicilio(this);
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-    
-    
 }
