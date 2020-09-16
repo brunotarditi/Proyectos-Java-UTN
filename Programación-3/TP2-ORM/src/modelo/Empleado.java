@@ -1,6 +1,7 @@
 package modelo;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
@@ -8,29 +9,16 @@ import javax.persistence.OneToOne;
  *
  * @author Bruno Tarditi
  */
+@Entity
 public class Empleado extends Persona implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
-    //private int idEmpleado;
     private int nroLegajo;
     private double sueldo;
 
     public Empleado() {
     }
 
-    public Empleado(int nroLegajo, double sueldo, String nombre, String apellido, long dni, Domicilio domicilio) {
-        super(nombre, apellido, dni, domicilio);
-        this.nroLegajo = nroLegajo;
-        this.sueldo = sueldo;
-    }
-
-//    public int getIdEmpleado() {
-//        return idEmpleado;
-//    }
-//
-//    public void setIdEmpleado(int idEmpleado) {
-//        this.idEmpleado = idEmpleado;
-//    }
     public int getNroLegajo() {
         return nroLegajo;
     }
@@ -45,18 +33,6 @@ public class Empleado extends Persona implements java.io.Serializable {
 
     public void setSueldo(double sueldo) {
         this.sueldo = sueldo;
-    }
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idDomicilio")
-    @Override
-    public Domicilio getDomicilio() {
-        return this.domicilio;
-    }
-
-    @Override
-    public void setDomicilio(Domicilio domicilio) {
-        this.domicilio = domicilio;
     }
 
 }

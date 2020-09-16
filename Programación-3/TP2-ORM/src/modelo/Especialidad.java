@@ -41,7 +41,5 @@ public class Especialidad extends EntityBean implements java.io.Serializable {
         this.medicos = medicos;
     }
 
-       public void addMedicos(Medico medico) {
-        this.medicos.add(medico);
-    }
+   
 }

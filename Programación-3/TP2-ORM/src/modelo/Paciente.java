@@ -3,6 +3,7 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -11,6 +12,7 @@ import javax.persistence.OneToOne;
  *
  * @author Bruno Tarditi
  */
+@Entity
 public class Paciente extends Persona implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,22 +48,6 @@ public class Paciente extends Persona implements java.io.Serializable {
 
     public void setTurnos(List<Turno> turnos) {
         this.turnos = turnos;
-    }
-    
-    public void addTurnos(Turno turno) {
-        this.turnos.add(turno);
-    }
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idDomicilio")
-    @Override
-    public Domicilio getDomicilio() {
-        return this.domicilio;
-    }
-
-    @Override
-    public void setDomicilio(Domicilio domicilio) {
-        this.domicilio = domicilio;
     }
 
 }

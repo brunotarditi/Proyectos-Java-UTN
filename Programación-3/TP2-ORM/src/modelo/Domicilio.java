@@ -13,6 +13,7 @@ public class Domicilio extends EntityBean implements java.io.Serializable {
     private String localidad;
     private String calle;
     private int numero;
+    private Persona persona;
 
     public Domicilio() {
     }
@@ -39,6 +40,10 @@ public class Domicilio extends EntityBean implements java.io.Serializable {
 
     public void setNumero(int numero) {
         this.numero = numero;
+    }
+
+    public Persona getPersona() {
+        return persona;
     }
 
     public void setPersona(Persona persona) {

@@ -17,7 +17,7 @@ import javax.persistence.OneToOne;
 public class HistoriaClinica extends EntityBean implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
-    //private int idHistoriaClinica;
+    
     private int numero;
     private Date fechaAlta;
     private Paciente paciente;
@@ -32,12 +32,7 @@ public class HistoriaClinica extends EntityBean implements java.io.Serializable 
         this.paciente = paciente;
     }
 
-//    public int getIdHistoriaClinica() {
-//        return idHistoriaClinica;
-//    }
-//    public void setIdHistoriaClinica(int idHistoriaClinica) {
-//        this.idHistoriaClinica = idHistoriaClinica;
-//    }
+
     public int getNumero() {
         return numero;
     }
@@ -54,7 +49,7 @@ public class HistoriaClinica extends EntityBean implements java.io.Serializable 
         this.fechaAlta = fechaAlta;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "historiaClinica")
+    @OneToOne(mappedBy = "historiaClinica", cascade = CascadeType.ALL)
     public Paciente getPaciente() {
         return paciente;
     }
@@ -72,8 +67,6 @@ public class HistoriaClinica extends EntityBean implements java.io.Serializable 
         this.detalles = detalles;
     }
 
-    public void addDetallesHistoriaClinica(DetalleHistoriaClinica detalle) {
-        this.detalles.add(detalle);
-    }
+   
 
 }
