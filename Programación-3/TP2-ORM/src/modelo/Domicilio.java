@@ -6,7 +6,7 @@ import javax.persistence.Entity;
  *
  * @author Bruno Tarditi
  */
-@Entity
+@Entity // hereda de entitybean
 public class Domicilio extends EntityBean implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;

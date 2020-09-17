@@ -9,7 +9,7 @@ import javax.persistence.OneToOne;
  *
  * @author Bruno Tarditi
  */
-@Entity
+@Entity // hereda de entitybean
 public class Persona extends EntityBean implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -19,6 +19,13 @@ public class Persona extends EntityBean implements java.io.Serializable {
     protected Domicilio domicilio;
 
     public Persona() {
+    }
+
+    public Persona(String nombre, String apellido, long dni, Domicilio domicilio) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.domicilio = domicilio;
     }
 
     public String getNombre() {
@@ -45,6 +52,7 @@ public class Persona extends EntityBean implements java.io.Serializable {
         this.dni = dni;
     }
 
+    // relacion una persona a un domicilio.pk = idDomicilio
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "idDomicilio")
     public Domicilio getDomicilio() {

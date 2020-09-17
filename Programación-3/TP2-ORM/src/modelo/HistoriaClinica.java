@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -13,7 +12,7 @@ import javax.persistence.OneToOne;
  *
  * @author Bruno Tarditi
  */
-@Entity
+@Entity // hereda de entitybean
 public class HistoriaClinica extends EntityBean implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,7 +47,7 @@ public class HistoriaClinica extends EntityBean implements java.io.Serializable 
     public void setFechaAlta(Date fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
-
+    
     @OneToOne(mappedBy = "historiaClinica", cascade = CascadeType.ALL)
     public Paciente getPaciente() {
         return paciente;
@@ -57,7 +56,7 @@ public class HistoriaClinica extends EntityBean implements java.io.Serializable 
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
-
+    // asociacion de una historiaClinica a muchos detalles.pk = historiaClinica
     @OneToMany(mappedBy = "historiaClinica", cascade = CascadeType.ALL)
     public List<DetalleHistoriaClinica> getDetalles() {
         return detalles;

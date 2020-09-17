@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
  *
  * @author Bruno Tarditi
  */
-@Entity
+@Entity // hereda de entitybean
 public class Turno extends EntityBean implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,6 +47,7 @@ public class Turno extends EntityBean implements java.io.Serializable {
         this.minutos = minutos;
     }
 
+    // relacion muchos turnos a un paciente.fk = idPaciente
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idPaciente")
     public Paciente getPaciente() {
@@ -56,7 +57,7 @@ public class Turno extends EntityBean implements java.io.Serializable {
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
-
+    // relacion muchos turnos a un medico.fk = idMedico
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idMedico")
     public Medico getMedico() {

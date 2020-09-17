@@ -23,6 +23,12 @@ public class Paciente extends Persona implements java.io.Serializable {
     public Paciente() {
     }
 
+    public Paciente(int nroSocio, HistoriaClinica historiaClinica, String nombre, String apellido, long dni, Domicilio domicilio) {
+        super(nombre, apellido, dni, domicilio);
+        this.nroSocio = nroSocio;
+        this.historiaClinica = historiaClinica;
+    }
+
     public int getNroSocio() {
         return nroSocio;
     }
@@ -30,7 +36,7 @@ public class Paciente extends Persona implements java.io.Serializable {
     public void setNroSocio(int nroSocio) {
         this.nroSocio = nroSocio;
     }
-
+    // relacion un paciente a una historia.pk = idHistoriaClinica
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idHistoriaClinica")
     public HistoriaClinica getHistoriaClinica() {
@@ -40,7 +46,7 @@ public class Paciente extends Persona implements java.io.Serializable {
     public void setHistoriaClinica(HistoriaClinica historiaClinica) {
         this.historiaClinica = historiaClinica;
     }
-
+    // asociacion un paciente a muchos turnos.pk = paciente
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
     public List<Turno> getTurnos() {
         return turnos;

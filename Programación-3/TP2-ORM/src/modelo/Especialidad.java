@@ -10,7 +10,7 @@ import javax.persistence.ManyToMany;
  *
  * @author Bruno Tarditi
  */
-@Entity
+@Entity // hereda de entitybean
 public class Especialidad extends EntityBean implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;

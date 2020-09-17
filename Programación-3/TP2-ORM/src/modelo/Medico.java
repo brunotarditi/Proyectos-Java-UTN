@@ -8,13 +8,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 /**
  *
  * @author Bruno Tarditi
  */
-@Entity
+@Entity 
 public class Medico extends Persona implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -24,6 +23,12 @@ public class Medico extends Persona implements java.io.Serializable {
     private List<Turno> turnos = new ArrayList<>();
 
     public Medico() {
+    }
+
+    public Medico(int matricula, long celular, String nombre, String apellido, long dni, Domicilio domicilio) {
+        super(nombre, apellido, dni, domicilio);
+        this.matricula = matricula;
+        this.celular = celular;
     }
 
     public int getMatricula() {
@@ -56,6 +61,7 @@ public class Medico extends Persona implements java.io.Serializable {
         this.especialidades = especialidades;
     }
 
+    // asociacion un medico a muchos turnos.pk = medico
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "medico")
     public List<Turno> getTurnos() {
         return turnos;
