@@ -3,7 +3,6 @@ package vista;
 
 import controlador.GestorComponente;
 import controlador.GestorTabla;
-import java.awt.Component;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -12,7 +11,6 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import modelo.ComponenteModelo;
-import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 /**
  *
