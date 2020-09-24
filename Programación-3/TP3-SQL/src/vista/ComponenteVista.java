@@ -2,14 +2,17 @@
 package vista;
 
 import controlador.GestorComponente;
-import controlador.GestorComputadora;
 import controlador.GestorTabla;
+import java.awt.Component;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import modelo.ComponenteModelo;
+import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 /**
  *
@@ -18,6 +21,7 @@ import modelo.ComponenteModelo;
 public class ComponenteVista extends javax.swing.JFrame {
 
     private DefaultTableModel listaComponentes;
+    DefaultTableCellRenderer centrar = new DefaultTableCellRenderer();
     
     
     public ComponenteVista() {
@@ -27,6 +31,9 @@ public class ComponenteVista extends javax.swing.JFrame {
             configTabla();
             setLocationRelativeTo(null);
             llenaCombobox();
+            ((DefaultTableCellRenderer) tabla_componente.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+            centrar.setHorizontalAlignment(SwingConstants.CENTER);
+            tabla_componente.setDefaultRenderer(Object.class, centrar);
             GestorComponente gc = new GestorComponente();          
             List<ComponenteModelo> componentes = gc.dameListaComponentes();
             GestorTabla.anhadeFilasDeDatos(componentes, listaComponentes);
@@ -41,6 +48,7 @@ public class ComponenteVista extends javax.swing.JFrame {
 
     private void configTabla() {
         listaComponentes = new DefaultTableModel();
+        //tabla_componente.getColumnModel().getColumn(1).setCellRenderer(CENTER_ALIGNMENT);
         listaComponentes.addColumn("id");
         listaComponentes.addColumn("Nombre");
         listaComponentes.addColumn("Nro. Serie");
@@ -62,7 +70,8 @@ public class ComponenteVista extends javax.swing.JFrame {
             cbxIdComputadora.addItem(codIterator.next());
         }
     }
-
+    
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -240,8 +249,8 @@ public class ComponenteVista extends javax.swing.JFrame {
         int filaSeleccionada = tabla_componente.getSelectedRow();
         try {
             if (filaSeleccionada == -1) {
-                if (txtNombre.getText().isEmpty() || txtSerie.getText().isEmpty()) {
-                    javax.swing.JOptionPane.showMessageDialog(this, "Los campos nombre y nro. de serie son obligatorios!", "Advertencia:", javax.swing.JOptionPane.ERROR_MESSAGE);
+                if (txtNombre.getText().isEmpty() || txtSerie.getText().isEmpty() || cbxIdComputadora.getSelectedItem().toString().isEmpty()) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "Los campos nombre, nro. de serie y id computadora son obligatorios!", "Advertencia:", javax.swing.JOptionPane.ERROR_MESSAGE);
                 }else{
                 gc.insertarComponente(txtNombre.getText(), txtSerie.getText(), Long.parseLong(cbxIdComputadora.getSelectedItem().toString()));
                 actualizarTabla();

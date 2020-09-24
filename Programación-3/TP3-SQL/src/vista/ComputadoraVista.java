@@ -5,9 +5,10 @@ import controlador.GestorTabla;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import modelo.ComputadoraModelo;
-
 /**
  *
  * @author Bruno Tarditi
@@ -15,6 +16,7 @@ import modelo.ComputadoraModelo;
 public class ComputadoraVista extends javax.swing.JFrame {
 
     public DefaultTableModel listaComputadoras;
+    DefaultTableCellRenderer centrar = new DefaultTableCellRenderer();
 
     //Constructor
     public ComputadoraVista() {
@@ -23,11 +25,13 @@ public class ComputadoraVista extends javax.swing.JFrame {
             configTabla();
             setLocationRelativeTo(null);
             GestorComputadora gc = new GestorComputadora();
-
+            ((DefaultTableCellRenderer) tabla_computadora.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
             List<ComputadoraModelo> computadoras = gc.dameListaComputadoras();
             GestorTabla.anhadeFilasDeDatos(computadoras, listaComputadoras);
             tabla_computadora.setModel(listaComputadoras);
             tabla_computadora.getColumnModel().removeColumn(tabla_computadora.getColumnModel().getColumn(0));
+            centrar.setHorizontalAlignment(SwingConstants.CENTER);
+            tabla_computadora.setDefaultRenderer(Object.class, centrar);
             gc.cerrarConexion();
 
         } catch (Exception ex) {
@@ -218,7 +222,7 @@ public class ComputadoraVista extends javax.swing.JFrame {
         try {
             if (filaSeleccionada == -1) {
                 if (txtCodigo.getText().isEmpty() || txtMarca.getText().isEmpty() || txtModelo.getText().isEmpty()) {
-                    javax.swing.JOptionPane.showMessageDialog(this, "Los campos nombre y nro. de serie son obligatorios!", "Advertencia:", javax.swing.JOptionPane.ERROR_MESSAGE);
+                    javax.swing.JOptionPane.showMessageDialog(this, "Los campos código, marca y modelo son obligatorios!", "Advertencia:", javax.swing.JOptionPane.ERROR_MESSAGE);
                 } else {
                     gc.insertarComputadora(txtCodigo.getText(), txtMarca.getText(), txtModelo.getText());
                     actualizarTabla();

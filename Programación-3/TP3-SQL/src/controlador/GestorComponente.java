@@ -81,7 +81,7 @@ public class GestorComponente {
         try {
             Statement s = conexion.createStatement();
             rs = s.executeQuery("select id from computadora");
-             
+              id_computadora.add("");
             while (rs.next()) {
                              
                 id_computadora.add(Long.toString(rs.getLong(1)));
