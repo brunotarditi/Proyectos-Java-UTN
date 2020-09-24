@@ -17,7 +17,9 @@ import modelo.Computadora;
  * @author Bruno Tarditi
  */
 public class GestorComputadora {
+    
 
+    
     DataBase db = new DataBase();
     Connection conexion = db.establecerConexion();
 
@@ -28,11 +30,8 @@ public class GestorComputadora {
         List<Computadora> computadoras = new ArrayList<Computadora>();
 
         try {
-            // Se crea un Statement, para realizar la consulta
             Statement s = conexion.createStatement();
 
-            // Se realiza la consulta. Los resultados se guardan en el
-            // ResultSet rs
             rs = s.executeQuery("select * from computadora");
             while (rs.next()) {
                 computadora = new Computadora();
@@ -47,7 +46,9 @@ public class GestorComputadora {
         }
         return computadoras;
     }
-
+    
+    
+    //INSERTAR COMPUTADORA
     public void insertarComputadora(String codigo, String marca, String modelo) throws SQLException {
 
         PreparedStatement ps = null;
@@ -72,6 +73,7 @@ public class GestorComputadora {
 
     }
 
+    //DAME COMPUTADORA
     public Computadora dameComputadoraFila(Long idComputadora) {
         ResultSet rs = null;
         Computadora computadora = new Computadora();
@@ -80,15 +82,40 @@ public class GestorComputadora {
 
             rs = s.executeQuery("select * from computadora where id = " + idComputadora);
             if (rs.next()) {
-                computadora.setId(rs.getInt("id"));
+                computadora.setId(rs.getLong("id"));
                 computadora.setCodigo(rs.getString("codigo"));
-                computadora.setMarca(rs.getString("nombre"));
+                computadora.setMarca(rs.getString("marca"));
                 computadora.setModelo(rs.getString("modelo"));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return computadora;
+    }
+    //EDITAR COMPUTADORA
+    public void editarComputadora(Long id, String codigo, String marca, String modelo) {
+        try {
+            PreparedStatement ps = conexion.prepareStatement("UPDATE computadora SET codigo = ?, marca = ?, modelo = ? where id = ?");
+            // Se establecen los parámetros y se ejecuta la sentencia.
+            ps.setString(1, codigo);
+            ps.setString(2, marca);
+            ps.setString(3, modelo);
+            ps.setLong(4, id);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    //ELIMINAR COMPUTADORA
+    public void eliminarComputadora(Long id) {
+        try {
+            Statement st = conexion.createStatement();
+            String sql = "DELETE FROM computadora WHERE id = " + id;
+            int delete = st.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 

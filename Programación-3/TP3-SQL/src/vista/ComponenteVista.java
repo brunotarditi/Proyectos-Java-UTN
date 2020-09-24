@@ -5,7 +5,13 @@
  */
 package vista;
 
+import controlador.GestorComponente;
+import controlador.GestorTabla;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import modelo.Componente;
 
 /**
  *
@@ -13,15 +19,28 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ComponenteVista extends javax.swing.JFrame {
 
-     private DefaultTableModel listaComponentes;
-    
+    private DefaultTableModel listaComponentes;
+
+    public ComponenteVista() {
+        initComponents();
+        setLocationRelativeTo(null);
+    }
+
     private void configTabla() {
         listaComponentes = new DefaultTableModel();
         listaComponentes.addColumn("id");
         listaComponentes.addColumn("nombre");
-        listaComponentes.addColumn("NroSerie");
+        listaComponentes.addColumn("nroSerie");
         listaComponentes.addColumn("idComputadora");
     }
+
+    public void actualizarTabla() {
+        GestorComponente gc = new GestorComponente();
+        List<Componente> computadoras = gc.dameListaComponentes();
+        GestorTabla.rellena(computadoras, listaComponentes);
+        gc.cerrarConexion();
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -120,7 +139,6 @@ public class ComponenteVista extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;

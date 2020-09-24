@@ -27,6 +27,7 @@ public class ComputadoraVista extends javax.swing.JFrame {
         try {
             initComponents();
             configTabla();
+            setLocationRelativeTo(null);
             GestorComputadora gc = new GestorComputadora();
             List<Computadora> computadoras = gc.dameListaComputadoras();
             GestorTabla.anhadeFilasDeDatos(computadoras, listaComputadoras);
@@ -35,7 +36,7 @@ public class ComputadoraVista extends javax.swing.JFrame {
             gc.cerrarConexion();
 
         } catch (Exception ex) {
-            Logger.getLogger(Computadora.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ComputadoraVista.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -64,12 +65,15 @@ public class ComputadoraVista extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnComponentes = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_computadora = new javax.swing.JTable();
         btnGuardar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
+        btnLimpiar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,7 +83,12 @@ public class ComputadoraVista extends javax.swing.JFrame {
 
         jLabel4.setText("Modelo");
 
-        jButton1.setText("Componentes");
+        btnComponentes.setText("Componentes");
+        btnComponentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComponentesActionPerformed(evt);
+            }
+        });
 
         tabla_computadora.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,40 +113,73 @@ public class ComputadoraVista extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("COMPUTADORAS");
 
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(78, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton1))
-                        .addComponent(txtCodigo)
-                        .addComponent(txtMarca)
-                        .addComponent(txtModelo))
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(83, 83, 83)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnComponentes)
+                        .addGap(26, 26, 26))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(txtCodigo)
+                                .addComponent(txtMarca)
+                                .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(btnEditar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnGuardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                                .addGap(47, 47, 47)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel1)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnComponentes))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
+                        .addGap(40, 40, 40)
                         .addComponent(jLabel2)
                         .addGap(31, 31, 31)
                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -151,8 +193,12 @@ public class ComputadoraVista extends javax.swing.JFrame {
                         .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnGuardar)
-                            .addComponent(jButton1))))
+                            .addComponent(btnLimpiar)
+                            .addComponent(btnGuardar))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnEditar)
+                            .addComponent(btnEliminar))))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -171,15 +217,93 @@ public class ComputadoraVista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+
         GestorComputadora gc = new GestorComputadora();
+        int filaSeleccionada = tabla_computadora.getSelectedRow();
         try {
-            gc.insertarComputadora(txtCodigo.getText(), txtMarca.getText(), txtModelo.getText());
-            gc.cerrarConexion();
-        } catch (SQLException ex) {
-            Logger.getLogger(Computadora.class.getName()).log(Level.SEVERE, null, ex);
+            if (filaSeleccionada == -1) {
+                gc.insertarComputadora(txtCodigo.getText(), txtMarca.getText(), txtModelo.getText());
+                actualizarTabla();
+                javax.swing.JOptionPane.showMessageDialog(this, "Computadora guardada!", "Acción:", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                Long valorId = (Long) listaComputadoras.getValueAt(filaSeleccionada, 0);
+                gc.editarComputadora(valorId, txtCodigo.getText(), txtMarca.getText(), txtModelo.getText());
+                actualizarTabla();
+                javax.swing.JOptionPane.showMessageDialog(this, "Computadora modificada!", "Acción:", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ComputadoraVista.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnComponentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComponentesActionPerformed
+
+        GestorComputadora gc = new GestorComputadora();
+        int filaSeleccionada = tabla_computadora.getSelectedRow();
+        
+        try {
+            if (filaSeleccionada == -1) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una computadora de la lista.", "Error:", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                Long valorId = (Long) listaComputadoras.getValueAt(filaSeleccionada, 0);
+                this.setVisible(false);
+                new ComponenteVista().setVisible(true);
+                
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ComputadoraVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnComponentesActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+
+        txtCodigo.setText("");
+        txtMarca.setText("");
+        txtModelo.setText("");
+
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+
+        GestorComputadora gc = new GestorComputadora();
+        int filaSeleccionada = tabla_computadora.getSelectedRow();
+        Long valorId = (Long) listaComputadoras.getValueAt(filaSeleccionada, 0);
+        try {
+            if (filaSeleccionada == -1) {
+
+                javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una computadora de la lista.", "Error:", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+            } else {
+                txtCodigo.setText(gc.dameComputadoraFila(valorId).getCodigo());
+                txtMarca.setText(gc.dameComputadoraFila(valorId).getMarca());
+                txtModelo.setText(gc.dameComputadoraFila(valorId).getModelo());
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ComputadoraVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+
+        int filaSeleccionada = tabla_computadora.getSelectedRow();
+        try {
+            if (filaSeleccionada == -1) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una computadora de la lista.", "Error:", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                Long valorId = (Long) listaComputadoras.getValueAt(filaSeleccionada, 0);
+                GestorComputadora gc = new GestorComputadora();
+                gc.eliminarComputadora(valorId);
+                actualizarTabla();
+                javax.swing.JOptionPane.showMessageDialog(this, "Computadora eliminada!", "Acción:", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ComputadoraVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,8 +341,11 @@ public class ComputadoraVista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnComponentes;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

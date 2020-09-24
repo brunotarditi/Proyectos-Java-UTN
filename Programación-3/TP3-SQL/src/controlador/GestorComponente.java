@@ -21,50 +21,50 @@ public class GestorComponente {
     DataBase db = new DataBase();
     Connection conexion = db.establecerConexion();
     GestorComputadora _gestorComputadora = new GestorComputadora();
-            
 
     //Trae una lista de componentes
-        public List<Componente> dameListaComponentes(int idComputadora) {
+    public List<Componente> dameListaComponentes() {
         ResultSet rs = null;
         Componente componente = new Componente();
+        GestorComputadora gc = new GestorComputadora();
         List<Componente> componentes = new ArrayList<Componente>();
+        
 
         try {
-            // Se crea un Statement, para realizar la consulta
             Statement s = conexion.createStatement();
 
-            // Se realiza la consulta. Los resultados se guardan en el
-            // ResultSet rs
-            rs = s.executeQuery("select * from componente where idComputadora = " + idComputadora);
+            rs = s.executeQuery("select * from componente");
             while (rs.next()) {
                 componente = new Componente();
-                componente.setId(rs.getInt("id"));
+                componente.setId(rs.getLong("id"));
                 componente.setNombre(rs.getString("nombre"));
-                componente.setNroSerie(rs.getString("Nro Serie"));
-                componente.setComputadora(_gestorComputadora.dameComputadoraFila(rs.getLong("idComputadora")));
+                componente.setNroSerie(rs.getString("nroSerie"));
+                componente.setComputadora(gc.dameComputadoraFila(rs.getLong("idComputadora")));              
                 componentes.add(componente);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return componentes;
     }
-        //Inserta los componentes
-        public void insertarComponente(String nombre, String nroSerie, String marca, String modelo, String codigo) throws SQLException {
-            conexion.setAutoCommit(false);
-            PreparedStatement ps = null;
-        try {
-                ps = conexion.prepareStatement("INSERT INTO (id, nombre, nroSerie, idComputadora) VALUE (?, ?)");
+    //Inserta los componentes
 
-                ps.setString(1, nombre);
-                ps.setString(2, nroSerie);
-                ps.executeUpdate();
-                conexion.commit();
+    public void insertarComponente(String nombre, String nroSerie, String marca, String modelo, String codigo) throws SQLException {
+        conexion.setAutoCommit(false);
+        PreparedStatement ps = null;
+        try {
+            ps = conexion.prepareStatement("INSERT INTO (id, nombre, nroSerie, idComputadora) VALUE (?, ?)");
+
+            ps.setString(1, nombre);
+            ps.setString(2, nroSerie);
+            ps.executeUpdate();
+            conexion.commit();
 
         } catch (SQLException ex) {
             Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
             conexion.rollback();
-        }finally{
+        } finally {
             conexion.setAutoCommit(true);
             if (ps != null) {
                 ps.close();
@@ -72,7 +72,7 @@ public class GestorComponente {
         }
 
     }
-    
+
     //Cierra la conexion
     public void cerrarConexion() {
         try {
