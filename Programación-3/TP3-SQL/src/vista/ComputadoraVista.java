@@ -217,9 +217,13 @@ public class ComputadoraVista extends javax.swing.JFrame {
         int filaSeleccionada = tabla_computadora.getSelectedRow();
         try {
             if (filaSeleccionada == -1) {
-                gc.insertarComputadora(txtCodigo.getText(), txtMarca.getText(), txtModelo.getText());
-                actualizarTabla();
-                javax.swing.JOptionPane.showMessageDialog(this, "Computadora guardada!", "Acción:", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                if (txtCodigo.getText().isEmpty() || txtMarca.getText().isEmpty() || txtModelo.getText().isEmpty()) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "Los campos nombre y nro. de serie son obligatorios!", "Advertencia:", javax.swing.JOptionPane.ERROR_MESSAGE);
+                } else {
+                    gc.insertarComputadora(txtCodigo.getText(), txtMarca.getText(), txtModelo.getText());
+                    actualizarTabla();
+                    javax.swing.JOptionPane.showMessageDialog(this, "Computadora guardada!", "Acción:", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                }
             } else {
                 Long valorId = (Long) listaComputadoras.getValueAt(filaSeleccionada, 0);
                 gc.editarComputadora(valorId, txtCodigo.getText(), txtMarca.getText(), txtModelo.getText());

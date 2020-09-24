@@ -10,7 +10,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import modelo.ComponenteModelo;
-import modelo.ComputadoraModelo;
 
 /**
  *
@@ -241,9 +240,13 @@ public class ComponenteVista extends javax.swing.JFrame {
         int filaSeleccionada = tabla_componente.getSelectedRow();
         try {
             if (filaSeleccionada == -1) {
+                if (txtNombre.getText().isEmpty() || txtSerie.getText().isEmpty()) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "Los campos nombre y nro. de serie son obligatorios!", "Advertencia:", javax.swing.JOptionPane.ERROR_MESSAGE);
+                }else{
                 gc.insertarComponente(txtNombre.getText(), txtSerie.getText(), Long.parseLong(cbxIdComputadora.getSelectedItem().toString()));
                 actualizarTabla();
                 javax.swing.JOptionPane.showMessageDialog(this, "Componente guardado!", "Acción:", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                }
             } else {
                 Long valorId = (Long) listaComponentes.getValueAt(filaSeleccionada, 0);
                 gc.editarComponente(valorId, txtNombre.getText(), txtSerie.getText(), Long.parseLong(cbxIdComputadora.getSelectedItem().toString()));
