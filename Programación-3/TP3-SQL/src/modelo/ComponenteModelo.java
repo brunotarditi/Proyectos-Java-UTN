@@ -4,14 +4,14 @@ package modelo;
  *
  * @author Bruno Tarditi
  */
-public class Componente extends EntityApp {
+public class ComponenteModelo extends EntityApp {
 
     private String nombre;
     private String nroSerie;
     private int idComputadora;
-    private Computadora computadora;
+    private ComputadoraModelo computadora;
 
-    public Componente() {
+    public ComponenteModelo() {
     }
 
     public String getNombre() {
@@ -38,11 +38,11 @@ public class Componente extends EntityApp {
         this.idComputadora = idComputadora;
     }
 
-    public Computadora getComputadora() {
+    public ComputadoraModelo getComputadora() {
         return computadora;
     }
 
-    public void setComputadora(Computadora computadora) {
+    public void setComputadora(ComputadoraModelo computadora) {
         this.computadora = computadora;
     }
 

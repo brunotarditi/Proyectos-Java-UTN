@@ -5,8 +5,8 @@ import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import modelo.Componente;
-import modelo.Computadora;
+import modelo.ComponenteModelo;
+import modelo.ComputadoraModelo;
 
 /**
  *
@@ -62,8 +62,8 @@ public class GestorTabla {
 
     public static void anhadeFilasDeDatos(List res, DefaultTableModel modelo) {
         //modelo = new DefaultTableModel();
-        if (res.get(0) instanceof Computadora) {
-            for (Computadora computadora : (List<Computadora>) res) {
+        if (res.get(0) instanceof ComputadoraModelo) {
+            for (ComputadoraModelo computadora : (List<ComputadoraModelo>) res) {
                 Object[] fila = new Object[4];
                 fila[0] = computadora.getId();
                 fila[1] = computadora.getCodigo();
@@ -71,8 +71,8 @@ public class GestorTabla {
                 fila[3] = computadora.getModelo();
                 modelo.addRow(fila);
             }
-        } else if (res.get(0) instanceof Componente) {
-            for (Componente componente : (List<Componente>) res) {
+        } else if (res.get(0) instanceof ComponenteModelo) {
+            for (ComponenteModelo componente : (List<ComponenteModelo>) res) {
                 Object[] fila = new Object[4];
                 fila[0] = componente.getId();
                 fila[1] = componente.getNombre();

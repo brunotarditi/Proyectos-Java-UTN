@@ -7,14 +7,14 @@ import java.util.List;
  *
  * @author Bruno Tarditi
  */
-public class Computadora extends EntityApp {
+public class ComputadoraModelo extends EntityApp {
 
     private String codigo;
     private String marca;
     private String modelo;
-    private List<Componente> componentes = new ArrayList<>();
+    private List<ComponenteModelo> componentes = new ArrayList<>();
 
-    public Computadora() {
+    public ComputadoraModelo() {
     }
 
     public String getCodigo() {
@@ -41,11 +41,11 @@ public class Computadora extends EntityApp {
         this.modelo = modelo;
     }
 
-    public List<Componente> getComponentes() {
+    public List<ComponenteModelo> getComponentes() {
         return componentes;
     }
 
-    public void setComponentes(List<Componente> componentes) {
+    public void setComponentes(List<ComponenteModelo> componentes) {
         this.componentes = componentes;
     }
 

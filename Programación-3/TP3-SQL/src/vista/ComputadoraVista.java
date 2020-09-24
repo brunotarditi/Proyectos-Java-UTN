@@ -1,18 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vista;
 
 import controlador.GestorComputadora;
 import controlador.GestorTabla;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import modelo.Computadora;
+import modelo.ComputadoraModelo;
 
 /**
  *
@@ -20,7 +14,7 @@ import modelo.Computadora;
  */
 public class ComputadoraVista extends javax.swing.JFrame {
 
-    private DefaultTableModel listaComputadoras;
+    public DefaultTableModel listaComputadoras;
 
     //Constructor
     public ComputadoraVista() {
@@ -29,7 +23,8 @@ public class ComputadoraVista extends javax.swing.JFrame {
             configTabla();
             setLocationRelativeTo(null);
             GestorComputadora gc = new GestorComputadora();
-            List<Computadora> computadoras = gc.dameListaComputadoras();
+
+            List<ComputadoraModelo> computadoras = gc.dameListaComputadoras();
             GestorTabla.anhadeFilasDeDatos(computadoras, listaComputadoras);
             tabla_computadora.setModel(listaComputadoras);
             tabla_computadora.getColumnModel().removeColumn(tabla_computadora.getColumnModel().getColumn(0));
@@ -50,7 +45,7 @@ public class ComputadoraVista extends javax.swing.JFrame {
 
     public void actualizarTabla() {
         GestorComputadora gc = new GestorComputadora();
-        List<Computadora> computadoras = gc.dameListaComputadoras();
+        List<ComputadoraModelo> computadoras = gc.dameListaComputadoras();
         GestorTabla.rellena(computadoras, listaComputadoras);
         gc.cerrarConexion();
     }
@@ -240,21 +235,10 @@ public class ComputadoraVista extends javax.swing.JFrame {
 
     private void btnComponentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComponentesActionPerformed
 
-        GestorComputadora gc = new GestorComputadora();
-        int filaSeleccionada = tabla_computadora.getSelectedRow();
-        
-        try {
-            if (filaSeleccionada == -1) {
-                javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una computadora de la lista.", "Error:", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                Long valorId = (Long) listaComputadoras.getValueAt(filaSeleccionada, 0);
-                this.setVisible(false);
-                new ComponenteVista().setVisible(true);
-                
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(ComputadoraVista.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.setVisible(false);
+        new ComponenteVista().setVisible(true);
+
+
     }//GEN-LAST:event_btnComponentesActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -285,6 +269,7 @@ public class ComputadoraVista extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnEditarActionPerformed
+
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
@@ -352,7 +337,7 @@ public class ComputadoraVista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tabla_computadora;
+    public javax.swing.JTable tabla_computadora;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModelo;

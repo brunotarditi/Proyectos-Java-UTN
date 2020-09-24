@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo.Computadora;
+import modelo.ComputadoraModelo;
 
 /**
  *
@@ -24,17 +24,17 @@ public class GestorComputadora {
     Connection conexion = db.establecerConexion();
 
     //Trae una lista de computadoras
-    public List<Computadora> dameListaComputadoras() {
+    public List<ComputadoraModelo> dameListaComputadoras() {
         ResultSet rs = null;
-        Computadora computadora = new Computadora();
-        List<Computadora> computadoras = new ArrayList<Computadora>();
+        ComputadoraModelo computadora = new ComputadoraModelo();
+        List<ComputadoraModelo> computadoras = new ArrayList<ComputadoraModelo>();
 
         try {
             Statement s = conexion.createStatement();
 
             rs = s.executeQuery("select * from computadora");
             while (rs.next()) {
-                computadora = new Computadora();
+                computadora = new ComputadoraModelo();
                 computadora.setId(rs.getLong("id"));
                 computadora.setCodigo(rs.getString("codigo"));
                 computadora.setMarca(rs.getString("marca"));
@@ -73,14 +73,14 @@ public class GestorComputadora {
 
     }
 
-    //DAME COMPUTADORA
-    public Computadora dameComputadoraFila(Long idComputadora) {
+    //DAME COMPUTADORA 
+    public ComputadoraModelo dameComputadoraFila(Long id) {
         ResultSet rs = null;
-        Computadora computadora = new Computadora();
+        ComputadoraModelo computadora = new ComputadoraModelo();
         try {
             Statement s = conexion.createStatement();
 
-            rs = s.executeQuery("select * from computadora where id = " + idComputadora);
+            rs = s.executeQuery("select * from computadora where id = " + id);
             if (rs.next()) {
                 computadora.setId(rs.getLong("id"));
                 computadora.setCodigo(rs.getString("codigo"));
