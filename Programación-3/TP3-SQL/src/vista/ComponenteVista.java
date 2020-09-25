@@ -46,7 +46,6 @@ public class ComponenteVista extends javax.swing.JFrame {
 
     private void configTabla() {
         listaComponentes = new DefaultTableModel();
-        //tabla_componente.getColumnModel().getColumn(1).setCellRenderer(CENTER_ALIGNMENT);
         listaComponentes.addColumn("id");
         listaComponentes.addColumn("Nombre");
         listaComponentes.addColumn("Nro. Serie");
