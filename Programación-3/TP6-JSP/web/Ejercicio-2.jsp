@@ -26,7 +26,7 @@
             <div class="row align-items-center justify-content-center">
                 <div class="col-sm-6">
 
-                    <form action="Ejercicio-2.jsp">
+                    <form action="Ejercicio-2.jsp" method="POST">
                         <div class="form-group">
                             <label for="dni">DNI: </label>
                             <input type="text" class="form-control" required="required" name="dni" id="dni" placeholder="dni">
