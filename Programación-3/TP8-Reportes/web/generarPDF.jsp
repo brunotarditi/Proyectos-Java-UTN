@@ -22,10 +22,10 @@
 
 
 <%
-    GestorCountry gc = new GestorCountry();
 
-    if (request.getParameter("pais") != null || request.getParameter("region") != null) {
+    if (request.getParameter("pdf") != null || request.getParameter("region") != null) {
 
+        GestorCountry gc = new GestorCountry();
         String pais = request.getParameter("pais");
         String region = request.getParameter("region");
         List<Country> countrys = gc.dameReportePais(region, pais);
@@ -61,25 +61,26 @@
         table.addCell(celdaPais);
         table.addCell(celdaregion);
 
-        for (Country elem : countrys) {
+        for (Country c : countrys) {
 
-            PdfPCell celda1 = new PdfPCell(new Phrase(elem.getNombreCiudad()));
-            celda1.setBorder(Rectangle.BOX);
-            PdfPCell celda2 = new PdfPCell(new Phrase(String.valueOf(elem.getPopulation())));
-            celda2.setBorder(Rectangle.BOX);
-            PdfPCell celda3 = new PdfPCell(new Phrase(elem.getNombrePais()));
-            celda3.setBorder(Rectangle.BOX);
-            PdfPCell celda4 = new PdfPCell(new Phrase(elem.getRegion()));
-            celda4.setBorder(Rectangle.BOX);
+            celdaCiudad = new PdfPCell(new Phrase(c.getNombreCiudad()));
+            celdaCiudad.setBorder(Rectangle.BOX);
+            celdapoblacion = new PdfPCell(new Phrase(String.valueOf(c.getPopulation())));
+            celdapoblacion.setBorder(Rectangle.BOX);
+            celdaPais = new PdfPCell(new Phrase(c.getNombrePais()));
+            celdaPais.setBorder(Rectangle.BOX);
+            celdaregion = new PdfPCell(new Phrase(c.getRegion()));
+            celdaregion.setBorder(Rectangle.BOX);
 
-            table.addCell(celda1);
-            table.addCell(celda2);
-            table.addCell(celda3);
-            table.addCell(celda4);
+            table.addCell(celdaCiudad);
+            table.addCell(celdapoblacion);
+            table.addCell(celdaPais);
+            table.addCell(celdaregion);
         }
 
         document.add(table);
         document.close();
+
     }
 
 %>
