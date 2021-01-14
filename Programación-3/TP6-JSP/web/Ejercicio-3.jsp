@@ -35,19 +35,19 @@
 
                     <table class="table table-striped text-center">
                         <thead class="thead-dark">
-                        <tr>
-                            <th scope="col" colspan="2" class="centrar">Personas</th>
-                            <th scope="col" class="derecha">
-                                <a href="Ejercicio-2.jsp" style="color:#FFFFFF">Agregar <i class="fa fa-plus-square fa-lg" style="color:#FFFFFF"></i></a>
-                            </th>
-                        </tr>
+                            <tr>
+                                <th scope="col" colspan="2" class="centrar">Personas</th>
+                                <th scope="col" class="derecha">
+                                    <a href="Ejercicio-2.jsp" style="color:#FFFFFF">Agregar <i class="fa fa-plus-square fa-lg" style="color:#FFFFFF"></i></a>
+                                </th>
+                            </tr>
                         </thead>
                         <thead class="thead-light">
-                        <tr >
-                            <th scope="col">DNI</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Domicilio</th>
-                        </tr>
+                            <tr >
+                                <th scope="col">DNI</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Domicilio</th>
+                            </tr>
                         </thead>
                         <%
                             GestorPersona gc = new GestorPersona();
@@ -56,13 +56,13 @@
                             for (Persona p : personas) {
                         %>
                         <tbody>
-                        <tr><td><%out.println(p.getDni());%></td>
-                            <td> <%out.println(p.getNombre());%></td>
-                            <td><%out.println(p.getDomicilio());%> </td>
-                        </tr>
+                            <tr><td><%out.println(p.getDni());%></td>
+                                <td> <%out.println(p.getNombre());%></td>
+                                <td><%out.println(p.getDomicilio());%> </td>
+                            </tr>
                         </tbody>
                         <%
-                    }%>
+                            }%>
 
                     </table>
                 </div>
