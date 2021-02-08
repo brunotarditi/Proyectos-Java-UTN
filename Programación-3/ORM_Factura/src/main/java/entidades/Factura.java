@@ -7,6 +7,7 @@ import java.util.List;
 @Entity
 @Table (name = "factura")
 public class Factura implements Serializable {
+    private static final long serialVersionUID = 1L;
     private long idFactura;
     private String fecha;
     private int numero;
@@ -18,6 +19,7 @@ public class Factura implements Serializable {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return idFactura;
     }

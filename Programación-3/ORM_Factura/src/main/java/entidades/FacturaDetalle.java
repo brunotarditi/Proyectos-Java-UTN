@@ -6,6 +6,7 @@ import java.io.Serializable;
 @Entity
 @Table (name = "detalle_de_factura")
 public class FacturaDetalle implements Serializable {
+    private static final long serialVersionUID = 1L;
     private long idFacturaDetalle;
     private int cantidad;
     private double subTotal;
@@ -15,6 +16,7 @@ public class FacturaDetalle implements Serializable {
     public FacturaDetalle() {
     }
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getIdFacturaDetalle() {
         return idFacturaDetalle;
     }

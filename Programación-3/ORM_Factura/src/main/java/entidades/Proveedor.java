@@ -7,6 +7,7 @@ import java.util.List;
 @Entity
 @Table (name = "proveedor")
 public class Proveedor implements Serializable {
+    private static final long serialVersionUID = 1L;
     private long idProveedor;
     private String cuit;
     private String razonSocial;
@@ -17,6 +18,7 @@ public class Proveedor implements Serializable {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getIdProveedor() {
         return idProveedor;
     }

@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 @Table (name = "tipo_articulo")
 public class TipoArticulo implements Serializable {
-
+    private static final long serialVersionUID = 1L;
     private long idTipoArticulo;
     private String denominacion;
     private List<Articulo> articulo;
@@ -16,6 +16,7 @@ public class TipoArticulo implements Serializable {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getIdTipoArticulo() {
         return idTipoArticulo;
     }

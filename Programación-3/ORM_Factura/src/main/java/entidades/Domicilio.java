@@ -1,13 +1,12 @@
 package entidades;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "domicilio")
 public class Domicilio implements Serializable {
+    private static final long serialVersionUID = 1L;
     private long idDomicilio;
     private int numero;
     private String nombreCalle;
@@ -16,6 +15,7 @@ public class Domicilio implements Serializable {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getIdDomicilio() {
         return idDomicilio;
     }
