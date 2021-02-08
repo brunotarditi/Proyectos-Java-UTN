@@ -7,24 +7,36 @@ import java.util.List;
 @Entity
 @Table (name = "factura")
 public class Factura implements Serializable {
+
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idFactura;
+
     private String fecha;
     private int numero;
     private double total;
+
+    // relacion de una factura a muchos detalles de facturas.pk = factura
+    @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL)
     private List<FacturaDetalle> facturasDetalle;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idProveedor")
     private Proveedor proveedor;
 
     public Factura() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long getId() {
+    public Factura(long idFactura) {
+        this.idFactura = idFactura;
+    }
+
+    public long getIdFactura() {
         return idFactura;
     }
 
-    public void setId(long idFactura) {
+    public void setIdFactura(long idFactura) {
         this.idFactura = idFactura;
     }
 
@@ -51,8 +63,7 @@ public class Factura implements Serializable {
     public void setTotal(double total) {
         this.total = total;
     }
-    // relacion de una factura a muchos detalles de facturas.pk = factura
-    @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL)
+
     public List<FacturaDetalle> getFacturasDetalle() {
         return facturasDetalle;
     }
@@ -61,8 +72,7 @@ public class Factura implements Serializable {
         this.facturasDetalle = facturasDetalle;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idProveedor")
+
     public Proveedor getProveedor() {
         return proveedor;
     }
@@ -70,4 +80,5 @@ public class Factura implements Serializable {
     public void setProveedor(Proveedor proveedor) {
         this.proveedor = proveedor;
     }
+
 }

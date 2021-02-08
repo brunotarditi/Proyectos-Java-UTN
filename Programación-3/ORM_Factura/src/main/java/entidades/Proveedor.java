@@ -7,18 +7,31 @@ import java.util.List;
 @Entity
 @Table (name = "proveedor")
 public class Proveedor implements Serializable {
+
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idProveedor;
+
     private String cuit;
     private String razonSocial;
+
+    // relacion de un proveedor con un domicilio.pk = idDomicilio
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "idDomicilio")
     private Domicilio domicilio;
+
+    //asociacion de un proveedor a muchas facturas.pk = proveedor
+    @OneToMany (mappedBy = "proveedor", cascade = CascadeType.ALL)
     private List<Factura> facturas;
 
     public Proveedor() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Proveedor(long idProveedor) {
+        this.idProveedor = idProveedor;
+    }
+
     public long getIdProveedor() {
         return idProveedor;
     }
@@ -42,9 +55,7 @@ public class Proveedor implements Serializable {
     public void setRazonSocial(String razonSocial) {
         this.razonSocial = razonSocial;
     }
-    // relacion de un proveedor con un domicilio.pk = idDomicilio
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "idDomicilio")
+
     public Domicilio getDomicilio() {
         return domicilio;
     }
@@ -53,8 +64,6 @@ public class Proveedor implements Serializable {
         this.domicilio = domicilio;
     }
 
-    //asociacion de un proveedor a muchas facturas.pk = proveedor
-    @OneToMany (mappedBy = "proveedor", cascade = CascadeType.ALL)
     public List<Factura> getFacturas() {
         return facturas;
     }
@@ -62,4 +71,5 @@ public class Proveedor implements Serializable {
     public void setFacturas(List<Factura> facturas) {
         this.facturas = facturas;
     }
+
 }

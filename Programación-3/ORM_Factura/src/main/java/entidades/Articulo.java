@@ -8,18 +8,33 @@ import java.util.List;
 @Table(name = "articulo")
 public class Articulo implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Long idArticulo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long idArticulo;
+
     private String denominacion;
     private int cantidad;
+
+    // Relacion un articulo muchos detalles de facturas.pk = articulo
+    @OneToMany(mappedBy = "articulo", cascade = CascadeType.ALL)
     private List<FacturaDetalle> facturasDetalle;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+                targetEntity = TipoArticulo.class,
+                cascade = CascadeType.ALL)
+    @JoinTable(name = "ARTICULO_TIPO_ARTICULO",
+                joinColumns = @JoinColumn(name = "ARTICULO_ID"),
+                inverseJoinColumns = @JoinColumn(name = "TIPO_ARTICULO_ID"))
     private List<TipoArticulo> tiposDeArticulo;
 
     public Articulo() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getIdArticulo() {
+    public Articulo(long idArticulo) {
+        this.idArticulo = idArticulo;
+    }
+
+    public long getIdArticulo() {
         return idArticulo;
     }
 
@@ -42,8 +57,7 @@ public class Articulo implements Serializable {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-    // Relacion un articulo muchos detalles de facturas.pk = articulo
-    @OneToMany(mappedBy = "articulo", cascade = CascadeType.ALL)
+
     public List<FacturaDetalle> getFacturasDetalle() {
         return facturasDetalle;
     }
@@ -52,12 +66,6 @@ public class Articulo implements Serializable {
         this.facturasDetalle = facturasDetalle;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY,
-    targetEntity = TipoArticulo.class,
-    cascade = CascadeType.ALL)
-    @JoinTable(name = "ARTICULO_TIPO_ARTICULO",
-    joinColumns = @JoinColumn(name = "ARTICULO_ID"),
-    inverseJoinColumns = @JoinColumn(name = "TIPO_ARTICULO_ID"))
     public List<TipoArticulo> getTiposDeArticulo() {
         return tiposDeArticulo;
     }
@@ -65,4 +73,5 @@ public class Articulo implements Serializable {
     public void setTiposDeArticulo(List<TipoArticulo> tiposDeArticulo) {
         this.tiposDeArticulo = tiposDeArticulo;
     }
+
 }
