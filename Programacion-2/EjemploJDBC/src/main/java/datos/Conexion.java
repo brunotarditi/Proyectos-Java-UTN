@@ -1,7 +1,6 @@
 package datos;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,12 +13,13 @@ import org.apache.commons.dbcp2.BasicDataSource;
  */
 public class Conexion {
 
+    private static BasicDataSource basicDataSource;
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/persistence_db?useSSL=false&Timezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     private static final String JDBC_USER = "root";
     private static final String JDBC_PASSWORD = "1234";
-    
-    public static DataSource geDataSource(){
-        BasicDataSource basicDataSource = new BasicDataSource();
+
+    public static DataSource geDataSource() {
+        basicDataSource = new BasicDataSource();
         basicDataSource.setUrl(JDBC_URL);
         basicDataSource.setUsername(JDBC_USER);
         basicDataSource.setPassword(JDBC_PASSWORD);
